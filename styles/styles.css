@@ -21,7 +21,51 @@ body {
   color: white !important;
 }
 
+.fw-light {
+  color: #D90368;
+}
+
+.form-control {
+  border-color: #D90368;
+}
+.form-control:focus {
+  border-color: #D90368;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(217,3,104,1);
+}
+.form-check-input {
+  border-color: #D90368;
+}
+.form-check-input:checked {
+  background-color: #D90368;
+  border-color: #D90368;
+}
+.form-check-input:focus {
+  border-color: #D90368;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(217,3,104,1);
+} 
+
+.btn-primary {
+  background-color: #D90368;
+  border-color: #D90368;
+}
+.btn-primary:hover {
+  background-color: #af0354;
+  border-color: #af0354;
+}
 /*#F2F2F2*/
+
+.table-dark {
+--bs-table-color: #F2F2F2;
+--bs-table-bg: #D90368;
+color: var(--bs-table-color);
+border-color: #D90368;
+}
+.table-light {
+  --bs-table-color: #D90368;
+  --bs-table-bg: #F2F2F2;
+  color: var(--bs-table-color);
+  border-color: #D90368;
+}
 
 .btn-outline-event {
   --bs-btn-color: #D90368;
@@ -30,6 +74,9 @@ body {
 .btn-outline-event:hover {
   color: white !important;
   background-color:  #D90368 !important;
+}
+tr {
+  border-color: #D90368;
 }
 
 .text-small {
@@ -61,4 +108,8 @@ body {
 .bi {
   vertical-align: -.125em;
   fill: currentColor;
+}
+
+.text-muted {
+  color: #D90368 !important;
 }
