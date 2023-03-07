@@ -107,4 +107,4 @@ function loadCards(array) {
 /* console.log(sortEvents(events, "capacity")); */
 /* console.log(obtainCategories(events)); */
 loadCategories(obtainCategories(events));
-loadCards(events);
+loadCards(dateFilter(events, currentDate, true));

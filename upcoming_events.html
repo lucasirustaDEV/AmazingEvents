@@ -50,27 +50,8 @@
 
         <div class="px-3 py-2 container border-top">
             <div class="d-flex flex-wrap justify-content-center">
-                <div class="d-flex flex-wrap align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label" for="inlineCheckbox1">Category</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label" for="inlineCheckbox2">Category</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label" for="inlineCheckbox2">Category</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label" for="inlineCheckbox2">Category</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label" for="inlineCheckbox2">Category</label>
-                    </div>
+                <div class="d-flex flex-wrap align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none" id="category-js">
+                    <!-- loadCategories(array) -->
                 </div>
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
                     <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
@@ -78,107 +59,11 @@
             </div>
         </div>
 
-          <div class="album py-5 container border-bottom">
-        
-              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="/assets/Cinema.jpg" class="bd-placeholder-img card-img-top" alt="..." width="100%" height="225">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">Title</h5>
-                            <p class="card-text text-center">Description</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Price $</small>
-                                <div class="btn-group">
-                                    <a class="btn btn-sm btn-outline-event" href="/details.html" role="button">Details</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="/assets/Costume_Party.jpg" class="bd-placeholder-img card-img-top" alt="..." width="100%"
-                            height="225">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">Title</h5>
-                            <p class="card-text text-center">Description</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Price $</small>
-                                <div class="btn-group">
-                                    <a class="btn btn-sm btn-outline-event" href="/details.html" role="button">Details</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="/assets/Music_Concert.jpg" class="bd-placeholder-img card-img-top" alt="..." width="100%"
-                            height="225">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">Title</h5>
-                            <p class="card-text text-center">Description</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Price $</small>
-                                <div class="btn-group">
-                                    <a class="btn btn-sm btn-outline-event" href="/details.html" role="button">Details</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="/assets/Food_Fair.jpg" class="bd-placeholder-img card-img-top" alt="..." width="100%" height="225">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">Title</h5>
-                            <p class="card-text text-center">Description</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Price $</small>
-                                <div class="btn-group">
-                                    <a class="btn btn-sm btn-outline-event" href="/details.html" role="button">Details</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="/assets/Marathon.jpg" class="bd-placeholder-img card-img-top" alt="..." width="100%"
-                            height="225">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">Title</h5>
-                            <p class="card-text text-center">Description</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Price $</small>
-                                <div class="btn-group">
-                                    <a class="btn btn-sm btn-outline-event" href="/details.html" role="button">Details</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="/assets/Museum_Tour.jpg" class="bd-placeholder-img card-img-top" alt="..." width="100%"
-                            height="225">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">Title</h5>
-                            <p class="card-text text-center">Description</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Price $</small>
-                                <div class="btn-group">
-                                    <a class="btn btn-sm btn-outline-event" href="/details.html" role="button">Details</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+        <div class="album py-5 container border-bottom">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="card-js">
+                <!-- loadCards(array) -->
             </div>
+        </div>
         
     </main>
 
@@ -202,4 +87,6 @@
     </div>
 
 </body>
+    <script src="./js/data.js"></script>
+    <script src="./js/upcoming_events.js"></script>
 </html>
