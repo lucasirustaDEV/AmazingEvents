@@ -71,8 +71,8 @@ function loadCategories(array) {
   for (let i = 0; i < array.length; i++) {
     body += ` 
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-        <label class="form-check-label" for="inlineCheckbox2">${array[i]}</label>
+        <input class="form-check-input" type="checkbox" id="${array[i]}">
+        <label class="form-check-label" for="${array[i]}">${array[i]}</label>
       </div>
     `;
   }
@@ -108,3 +108,49 @@ function loadCards(array) {
 /* console.log(obtainCategories(events)); */
 loadCategories(obtainCategories(events));
 loadCards(dateFilter(events, currentDate, true));
+
+const chks = document.querySelectorAll('input[type=checkbox]');
+
+chks.forEach(chk => {
+  chk.addEventListener('click', filterEvents);
+});
+
+const search = document.getElementById('search');
+
+search.addEventListener('keyup', filterEvents);
+
+function filterEvents() {
+  let checks = Array.from(document.querySelectorAll('input[type=checkbox]:checked')).map(check => check.id);
+  /* console.log("Valor de búsqueda: " + search.value); */
+  let searchText = search.value;
+  /* console.log(searchText); */
+  /* checks.forEach(check => console.log(check)); */
+  /* console.log(checks); */
+  let filtro = events.filter(event => {
+    return (event.name.toLowerCase().includes(searchText.toLowerCase())) && (checks.length === 0 || checks.includes(event.category));
+  })
+  /* console.log(filtro); */
+  /* console.log(filtro.length); */
+  if (filtro.length === 0) {
+    loadNoResults();
+  } else {
+    /* loadCards(filtro); */
+    loadCards(dateFilter(filtro, currentDate, true));
+  }
+}
+
+function loadNoResults() {
+  /* alert('No results found'); */
+  const tagToUpdate = document.getElementById("card-js");
+  let body = ``;
+    body = ` 
+      <section class="py-5 text-center container bg-light ">
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">No results found</h1>
+          </div>
+        </div>
+      </section>
+    `;
+  tagToUpdate.innerHTML = body; 
+}

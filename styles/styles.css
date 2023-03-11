@@ -113,3 +113,10 @@ tr {
 .text-muted {
   color: #D90368 !important;
 }
+
+.advert {
+  background-color: #D90368;
+  color: #F2F2F2;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
