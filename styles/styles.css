@@ -25,6 +25,10 @@ body {
   color: #D90368;
 }
 
+label {
+  color: #D90368;
+}
+
 .form-control {
   border-color: #D90368;
 }

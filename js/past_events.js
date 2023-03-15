@@ -1,5 +1,6 @@
 const currentDate = data.currentDate;
-const events = data.events;
+/* const events = data.events; */
+const events = dateFilter(data.events, currentDate, false);
 
 function dateFilter(array, date, future) {
   let eventsFilterDate = [];
@@ -62,6 +63,7 @@ function obtainCategories(array) {
     }
     repeat = false;
   }
+  categories.sort();
   return categories;
 }
 
@@ -82,75 +84,67 @@ function loadCategories(array) {
 function loadCards(array) {
   const tagToUpdate = document.getElementById("card-js");
   let body = ``;
-  for (let i = 0; i < array.length; i++) {
-    body += ` 
-      <div class="col">
-        <div class="card shadow-sm" >                       
-          <img src=${array[i].image} class="bd-placeholder-img card-img-top" alt="..." width="100%" height="225">
-          <div class="card-body">
-            <h5 class="card-title text-center">${array[i].name}</h5>
-            <p class="card-text text-center">${array[i].category}</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <small class="text-muted">Price $ ${array[i].price}</small>
-              <div class="btn-group">
-                <a class="btn btn-sm btn-outline-event" href="./details.html" role="button">Details</a>
+  if (array.length == 0) {
+    body = ` 
+    <section class="py-5 text-center container bg-light ">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">No results found</h1>
+        </div>
+      </div>
+    </section>
+    `;
+  } else {
+    for (let i = 0; i < array.length; i++) {
+      body += ` 
+        <div class="col">
+          <div class="card shadow-sm" >                       
+            <img src=${array[i].image} class="bd-placeholder-img card-img-top" alt="..." width="100%" height="225">
+            <div class="card-body">
+              <h5 class="card-title text-center">${array[i].name}</h5>
+              <p class="card-text text-center">${array[i].category}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Price $ ${array[i].price}</small>
+                <div class="btn-group">
+                  <a class="btn btn-sm btn-outline-event" href="./details.html?eventId=${array[i]._id}" role="button">Details</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    `;
+      `;
+    }
   }
   tagToUpdate.innerHTML = body; 
 }
 
-/* console.log(sortEvents(events, "capacity")); */
-/* console.log(obtainCategories(events)); */
 loadCategories(obtainCategories(events));
-loadCards(dateFilter(events, currentDate, false));
 
 const chks = document.querySelectorAll('input[type=checkbox]');
+const search = document.getElementById('search'); 
 
 chks.forEach(chk => {
   chk.addEventListener('click', filterEvents);
 });
 
-const search = document.getElementById('search');
-
 search.addEventListener('keyup', filterEvents);
 
 function filterEvents() {
+  console.log("estoy pasando por acá");
   let checks = Array.from(document.querySelectorAll('input[type=checkbox]:checked')).map(check => check.id);
-  /* console.log("Valor de búsqueda: " + search.value); */
   let searchText = search.value;
-  /* console.log(searchText); */
-  /* checks.forEach(check => console.log(check)); */
-  /* console.log(checks); */
-  let filtro = events.filter(event => {
-    return (event.name.toLowerCase().includes(searchText.toLowerCase())) && (checks.length === 0 || checks.includes(event.category));
-  })
-  /* console.log(filtro); */
-  /* console.log(filtro.length); */
-  if (filtro.length === 0) {
-    loadNoResults();
+  if (checks.length == 0 && searchText.length == 0) {
+    loadCards(events);
+    //return events;
   } else {
-    /* loadCards(filtro); */
-    loadCards(dateFilter(filtro, currentDate, false));
+    let filtro = events.filter(event => {
+      return (event.name.toLowerCase().includes(searchText.toLowerCase())) && (checks.length === 0 || checks.includes(event.category));
+    })
+    loadCards(filtro);
+    //return filtro;
   }
 }
 
-function loadNoResults() {
-  /* alert('No results found'); */
-  const tagToUpdate = document.getElementById("card-js");
-  let body = ``;
-    body = ` 
-      <section class="py-5 text-center container bg-light ">
-        <div class="row py-lg-5">
-          <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">No results found</h1>
-          </div>
-        </div>
-      </section>
-    `;
-  tagToUpdate.innerHTML = body; 
-}
+window.addEventListener("load", (event) => {
+  filterEvents();
+});

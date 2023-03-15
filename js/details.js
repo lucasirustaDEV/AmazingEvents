@@ -1,12 +1,31 @@
 const currentDate = data.currentDate;
 const events = data.events;
 
-/* const event = events.filter(event => event._id === id); */
+
+const queryString = location.search;
+
+const params = new URLSearchParams(queryString);
+const eventId = params.get('eventId');
+
+/* let origen = location.search; */
+/* console.log(origen); */
+/* let eventId = origen.split('=')
+console.log(eventId[1]);
+console.log(events.find(event => event._id === Number(eventId[1]))); */
+
+if (events.find(event => event._id == eventId) ===  undefined) {
+  loadNoResults();
+}else {
+  loadDetails(events, Number(eventId));
+}
 
 function loadDetails(events, id) {
+    /* console.log(id);
+    console.log(events); */
     const tagToUpdate = document.getElementById("details");
     let body = ``;
     const eventDetails = events.filter(event => event._id === id);
+    /* console.log(eventDetails); */
       body += ` 
         <div class="card row flex-row p-4 pb-lg-5 pe-lg-0 pt-lg-5 rounded-3 border shadow-lg">
             <img class="col-lg-4 card-img-start img-fluid p-0 shadow-lg" src=${eventDetails[0].image} />
@@ -25,7 +44,7 @@ function loadDetails(events, id) {
       `;
       if (eventDetails[0].date < currentDate) {
         body += `
-                <p class="card-text lead mt-5 text-center advert">Evento Finalizado</p>
+                <p class="card-text lead mt-5 text-center advert">Event Finished</p>
             </div>
         </div>
         `;
@@ -36,8 +55,23 @@ function loadDetails(events, id) {
         `;
       }
     tagToUpdate.innerHTML = body; 
-    console.log(eventDetails);
-    console.log(eventDetails[0].name);
+    /* console.log(eventDetails);
+    console.log(eventDetails[0].name); */
   }
 
-  loadDetails(events, 1);
+  function loadNoResults() {
+    /* alert('No results found'); */
+    const tagToUpdate = document.getElementById("details");
+    let body = ``;
+      body = ` 
+        <section class="py-5 text-center container bg-light ">
+          <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+              <h1 class="fw-light">No results found</h1>
+            </div>
+          </div>
+        </section>
+      `;
+    tagToUpdate.innerHTML = body; 
+  }
+
