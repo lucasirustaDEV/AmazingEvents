@@ -1,6 +1,6 @@
 const currentDate = data.currentDate;
 const events = data.events;
-
+const tagDetails = document.getElementById("details");
 
 const queryString = location.search;
 
@@ -22,7 +22,7 @@ if (events.find(event => event._id == eventId) ===  undefined) {
 function loadDetails(events, id) {
     /* console.log(id);
     console.log(events); */
-    const tagToUpdate = document.getElementById("details");
+    //const tagToUpdate = document.getElementById("details");
     let body = ``;
     const eventDetails = events.filter(event => event._id === id);
     /* console.log(eventDetails); */
@@ -54,14 +54,15 @@ function loadDetails(events, id) {
         </div>
         `;
       }
-    tagToUpdate.innerHTML = body; 
+    //tagToUpdate.innerHTML = body; 
     /* console.log(eventDetails);
     console.log(eventDetails[0].name); */
+    tagDetails.innerHTML = body;
   }
 
   function loadNoResults() {
     /* alert('No results found'); */
-    const tagToUpdate = document.getElementById("details");
+    //const tagToUpdate = document.getElementById("details");
     let body = ``;
       body = ` 
         <section class="py-5 text-center container bg-light ">
@@ -72,6 +73,7 @@ function loadDetails(events, id) {
           </div>
         </section>
       `;
-    tagToUpdate.innerHTML = body; 
+    //tagToUpdate.innerHTML = body;
+    tagDetails.innerHTML = body; 
   }
 

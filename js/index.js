@@ -1,5 +1,5 @@
 const currentDate = data.currentDate;
-const events = dateFilter(data.events, currentDate, false);
+const events = data.events;
 const tagCards = document.getElementById("card-js");
 const tagCheckboxs = document.getElementById("category-js");
 const search = document.getElementById('search'); 
@@ -104,14 +104,3 @@ function crossFilter() {
     loadCards(arrayFiltrado);  
 }
 
-function dateFilter(array, date, future) {
-  let eventsFilterDate = [];
-  for (let i = 0; i < array.length; i++) {
-    if (array[i].date > date && future) {
-      eventsFilterDate.push(array[i]);
-    } else if (array[i].date < date && !future) {
-      eventsFilterDate.push(array[i]);
-    }
-  }
-  return eventsFilterDate;
-}
