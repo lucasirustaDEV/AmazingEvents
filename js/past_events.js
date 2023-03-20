@@ -1,24 +1,39 @@
-const currentDate = data.currentDate;
-const events = dateFilter(data.events, currentDate, false);
+const API_URL_EVENTS = "https://mindhub-xj03.onrender.com/api/amazing";
+//const currentDate = data.currentDate;
+//const events = data.events;
+let events = [];
+let currentDate = ""
 const tagCards = document.getElementById("card-js");
 const tagCheckboxs = document.getElementById("category-js");
 const search = document.getElementById('search'); 
 
-search.addEventListener('input', crossFilter) 
+const getEvents = async () => {
+  try {
+    const response = await fetch(API_URL_EVENTS);
+    const dataEvents = await response.json();
+    //console.log("current date", dataEvents.currentDate);
+    //console.log("array de eventos", dataEvents.events);
+    events = dataEvents.events;
+    currentDate = dataEvents.currentDate;
+    events = events.filter(event => event.date < currentDate);
 
-tagCheckboxs.addEventListener('change', crossFilter);
+    loadCategories(events);
 
-/* tagCheckboxs.addEventListener('change', () =>{
-    let arrayFiltrado = filterCategory(events);
-    arrayFiltrado = filterText(arrayFiltrado, search.value);
-    loadCards(arrayFiltrado);
-}); */
+    search.addEventListener('input', crossFilter) 
+    tagCheckboxs.addEventListener('change', crossFilter);
 
-loadCategories(events);
-window.addEventListener("load", (event) => {
+    crossFilter();
+  }catch (error) {
+    console.log(error.message);
+  }
+};
+
+getEvents();
+
+/* window.addEventListener("load", (event) => {
     crossFilter();
 });
-
+ */
 function filterText(array, text) {
     let arrayFiltrado = array.filter(event => event.name.toLowerCase().includes(text.toLowerCase()));
     return arrayFiltrado;
@@ -33,6 +48,7 @@ function filterCategory(array) {
     }else {
         arrayChecks = arrayChecks.map(check => check.id);
         //console.log(arrayChecks);
+        //console.log(array);
         let arrayFiltrado = array.filter(event => arrayChecks.includes(event.category));
         return arrayFiltrado;
     }
@@ -102,16 +118,4 @@ function crossFilter() {
     let arrayFiltrado = filterCategory(events);
     arrayFiltrado = filterText(arrayFiltrado, search.value);
     loadCards(arrayFiltrado);  
-}
-
-function dateFilter(array, date, future) {
-  let eventsFilterDate = [];
-  for (let i = 0; i < array.length; i++) {
-    if (array[i].date > date && future) {
-      eventsFilterDate.push(array[i]);
-    } else if (array[i].date < date && !future) {
-      eventsFilterDate.push(array[i]);
-    }
-  }
-  return eventsFilterDate;
 }

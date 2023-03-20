@@ -16,6 +16,13 @@ const sendMessage = (event) => {
         document.getElementById("message").focus();
     } else {
         console.log(name.value, email.value, message.value);
+        
+        const myFormData = new FormData(event.target);
+        const formDataObj = Object.fromEntries(myFormData.entries());
+        console.log(formDataObj);
+        const JSONData = JSON.stringify(formDataObj);
+        console.log(JSONData);
+
         alert("Message sent successfully");
         document.getElementById("form").reset();
     }

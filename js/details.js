@@ -1,5 +1,6 @@
-const currentDate = data.currentDate;
-const events = data.events;
+const API_URL_EVENTS = "https://mindhub-xj03.onrender.com/api/amazing";
+//const currentDate = data.currentDate;
+//const events = data.events;
 const tagDetails = document.getElementById("details");
 
 const queryString = location.search;
@@ -13,11 +14,32 @@ const eventId = params.get('eventId');
 console.log(eventId[1]);
 console.log(events.find(event => event._id === Number(eventId[1]))); */
 
-if (events.find(event => event._id == eventId) ===  undefined) {
+const getEvents = async () => {
+  const response = await fetch(API_URL_EVENTS);
+  const dataEvents = await response.json();
+  //console.log("current date", dataEvents.currentDate);
+  //console.log("array de eventos", dataEvents.events);
+  events = dataEvents.events;
+  currentDate = dataEvents.currentDate;
+  
+  if (events.find(event => event._id == eventId) ===  undefined) {
+    loadNoResults();
+  }else {
+    loadDetails(events, Number(eventId));
+  }
+  
+};
+
+let events = [];
+let currentDate = "";
+getEvents();
+
+
+/* if (events.find(event => event._id == eventId) ===  undefined) {
   loadNoResults();
 }else {
   loadDetails(events, Number(eventId));
-}
+} */
 
 function loadDetails(events, id) {
     /* console.log(id);

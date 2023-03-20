@@ -8,7 +8,6 @@ body {
   background-color: rgba(0, 0, 0, .1);
 }
 
-
 .nav-item a {
   color: #D90368;
 }
@@ -70,6 +69,18 @@ border-color: #D90368;
   color: var(--bs-table-color);
   border-color: #D90368;
 }
+tr {
+  border-color: #D90368;
+}
+.stats {
+  text-align: right;
+}
+th {
+  width: 33%;
+}
+td {
+  color: #D90368;
+}
 
 .btn-outline-event {
   --bs-btn-color: #D90368;
@@ -78,9 +89,6 @@ border-color: #D90368;
 .btn-outline-event:hover {
   color: white !important;
   background-color:  #D90368 !important;
-}
-tr {
-  border-color: #D90368;
 }
 
 .text-small {
@@ -101,14 +109,6 @@ tr {
   }
 }
 
-.b-example-divider {
-  height: 3rem;
-  background-color: rgba(0, 0, 0, .1);
-  border: solid rgba(0, 0, 0, .15);
-  border-width: 1px 0;
-  box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-}
-
 .bi {
   vertical-align: -.125em;
   fill: currentColor;
@@ -123,4 +123,12 @@ tr {
   color: #F2F2F2;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+.b-example-divider {
+  height: 3rem;
+  background-color: rgba(0, 0, 0, .1);
+  border: solid rgba(0, 0, 0, .15);
+  border-width: 1px 0;
+  box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
 }

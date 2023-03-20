@@ -1,23 +1,41 @@
-const currentDate = data.currentDate;
-const events = data.events;
+const API_URL_EVENTS = "https://mindhub-xj03.onrender.com/api/amazing";
+//const currentDate = data.currentDate;
+//const events = data.events;
+let events = [];
 const tagCards = document.getElementById("card-js");
 const tagCheckboxs = document.getElementById("category-js");
 const search = document.getElementById('search'); 
 
-search.addEventListener('input', crossFilter) 
+const getEvents = async () => {
+  try {
+    const response = await fetch(API_URL_EVENTS);
+    const dataEvents = await response.json();
+    //console.log("current date", dataEvents.currentDate);
+    //console.log("array de eventos", dataEvents.events);
+    events = dataEvents.events;
 
-tagCheckboxs.addEventListener('change', crossFilter);
+    loadCategories(dataEvents.events);
 
-/* tagCheckboxs.addEventListener('change', () =>{
-    let arrayFiltrado = filterCategory(events);
-    arrayFiltrado = filterText(arrayFiltrado, search.value);
-    loadCards(arrayFiltrado);
-}); */
+    search.addEventListener('input', crossFilter) 
+    tagCheckboxs.addEventListener('change', crossFilter);
 
-loadCategories(events);
-window.addEventListener("load", (event) => {
     crossFilter();
-});
+  }catch (error) {
+    console.log(error.message);
+  }
+};
+
+getEvents();
+
+//const events = getEvents();
+//const currentDate = getEvents().currentDate;
+//console.log("current date: " + currentDate);
+
+//loadCategories(events);
+
+/* window.addEventListener("load", (event) => {
+    crossFilter();
+}); */
 
 function filterText(array, text) {
     let arrayFiltrado = array.filter(event => event.name.toLowerCase().includes(text.toLowerCase()));
@@ -33,6 +51,7 @@ function filterCategory(array) {
     }else {
         arrayChecks = arrayChecks.map(check => check.id);
         //console.log(arrayChecks);
+        //console.log(array);
         let arrayFiltrado = array.filter(event => arrayChecks.includes(event.category));
         return arrayFiltrado;
     }
