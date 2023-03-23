@@ -46,6 +46,16 @@ label {
   border-color: #D90368;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(217,3,104,1);
 } 
+::placeholder { 
+  color: #D90368 !important;
+  opacity: 1;
+}
+
+.card:hover{
+  border-color: #D90368;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(217,3,104,1) !important;
+  
+}
 
 .btn-primary {
   background-color: #D90368;
